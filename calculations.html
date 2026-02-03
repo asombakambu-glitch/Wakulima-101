@@ -32,8 +32,8 @@
                         <div class="navbar-nav">
                             <a href="index.html" class="nav-link  active text-right">Home</a>
                             <a href="products.html" class="nav-link text-right">Products</a>
-                            <a href="" class="nav-link text-right">Calculations</a>
-                            <a href="" class="nav-link active text-right">Contact us</a>
+                            <a href="calculations.html" class="nav-link text-right">Calculations</a>
+                            <a href="contacts.html" class="nav-link active text-right">Contact us</a>
                         </div>
                     </div>
                 </nav>
@@ -43,7 +43,164 @@
         <!-- end of section 1  -->
         
 </div>
+
+<section class="row">
+    <p class="fs-5 text-center">When we began Wakulima 1 on 1, we had an aim of making sure that we are transparent and provide quality to both parties. Through this, the calculator was established. We hope you enjoy</p>
+</section>
  
+    <!-- !-- section 5  --> 
+        <section class="row">
+
+        </section>
+
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+                    <div class="card shadow-sm rounded-4">
+                        <div class="card-body p-4">
+                            <h4 class="card-title mb-2">Wakulima Price Calculator</h4>
+                            <p class="text-muted mb-4">For farmers & buyers – transparent pricing.</p>
+
+                            <div class="mb-3">
+                                <label class="form-label">Price per kg (KSh)</label>
+                                <input type="number" id="price" class="form-control" placeholder="e.g. 50">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Quantity (kg)</label>
+                                <input type="number" id="quantity" class="form-control" placeholder="e.g. 10">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Delivery Fee (KSh)</label>
+                                <input type="number" id="delivery" class="form-control" placeholder="e.g. 200">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Platform Fee (%)</label>
+                                <input type="number" id="fee" class="form-control" value="5">
+                            </div>
+
+                            <button class="btn btn-success w-100" onclick="calculateWakulima()">
+                                Calculate
+                            </button>
+
+                            <div id="result" class="mt-4 d-none">
+                                <div class="alert alert-success mb-2" id="finalCost"></div>
+                                <div class="alert alert-primary mb-2" id="farmerEarnings"></div>
+                                <div class="alert alert-info mb-2" id="profitMargin"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <script>
+            function calculateWakulima() {
+                const price = Number(document.getElementById("price").value);
+                const quantity = Number(document.getElementById("quantity").value);
+                const delivery = Number(document.getElementById("delivery").value);
+                const feePercent = Number(document.getElementById("fee").value);
+
+                const resultBox = document.getElementById("result");
+                const finalCostEl = document.getElementById("finalCost");
+                const farmerEarningsEl = document.getElementById("farmerEarnings");
+                const profitMarginEl = document.getElementById("profitMargin");
+
+                if (!price || !quantity || delivery < 0 || feePercent < 0) {
+                    resultBox.classList.remove("d-none");
+                    finalCostEl.className = "alert alert-warning";
+                    finalCostEl.textContent = "Please fill in valid values for all fields.";
+                    farmerEarningsEl.textContent = "";
+                    profitMarginEl.textContent = "";
+                    return;
+                }
+
+                const produceCost = price * quantity;
+                const platformFee = (feePercent / 100) * produceCost;
+                const finalCost = produceCost + delivery;
+                const farmerEarnings = produceCost - platformFee;
+                const profitMargin = ((farmerEarnings / produceCost) * 100).toFixed(1);
+
+                resultBox.classList.remove("d-none");
+
+                finalCostEl.textContent = `Final cost (buyer pays): KSh ${finalCost.toLocaleString()}`;
+                farmerEarningsEl.textContent = `Farmer earnings (after ${feePercent}% fee): KSh ${farmerEarnings.toLocaleString()}`;
+                profitMarginEl.textContent = `Farmer profit margin: ${profitMargin}%`;
+            }
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <!-- footer  -->
+        <section class="row bg-success p-3">
+            <!-- child 1  -->
+            <div class="col-md-4 text-white text-center">
+                <h2>About Us</h2>
+                <p>Wakulima One on One is a Non-Governmental Organaniztion aimed at providing farmers with a platform
+                    where they can sell their products at competitive prices without exploiting the other party.We
+                    are located all over the country but mostly online based</p>
+            </div>
+
+            <!-- child 3  -->
+            <div class="col-md-4">
+                <h2 class="text-center text-white">Contact Us</h2>
+                <input type="email" placeholder="Enter you email" class="form-control">
+                <br><br>
+
+                <textarea class="form-control" placeholder="Leave a comment"></textarea><br>
+
+                <input type="submit" value="Send message" class="btn btn-outline-dark text-white">
+                </form>
+            </div>
+
+            <!-- child 3  -->
+            <div class="col-md-4">
+                <h2 class="text-center text-white">Stay connected</h2>
+                <a href="https://www.facebook.com">
+                    <img src="images/fbd.png" alt="facebook" height="40px">
+                </a>
+
+                <a href="https://www.instagram.com">
+                    <img src="images/instagram.jpeg" alt="instagram" height="40px">
+                </a>
+
+                <a href="https://wwww.x.com">
+                    <img src="images/x.jpeg" alt="x" height="40px">
+                </a><br><br>
+
+                <p class="text-white">Follow us on all our social media plat forms. We would love to interact with all
+                    of you.</p>
+            </div>
+
+        </section>
+        <!-- end of footer section  -->
+    </div>
+    <footer class="p-4 text-white text-center bg-success">
+        <b class="">Developed by Imani Asomba &copy;. 2026</b>
+    </footer>
+
     </div>
 
 </body>
